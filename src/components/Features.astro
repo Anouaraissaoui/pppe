@@ -1,0 +1,51 @@
+---
+const features = [
+  {
+    title: "50,000+ Live Channels",
+    description: "Access thousands of international channels including sports, news, entertainment, and more.",
+    icon: "📺"
+  },
+  {
+    title: "Premium VOD Content",
+    description: "Enjoy a vast library of movies and TV shows on-demand in HD quality.",
+    icon: "🎬"
+  },
+  {
+    title: "Multi-Device Support",
+    description: "Watch on your Smart TV, smartphone, tablet, or computer with our versatile apps.",
+    icon: "📱"
+  },
+  {
+    title: "24/7 Customer Support",
+    description: "Get instant help from our dedicated support team whenever you need assistance.",
+    icon: "🛟"
+  }
+];
+---
+<section id="features" class="py-20 bg-secondary">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <span class="text-primary text-sm font-bold tracking-wider uppercase">Features</span>
+      <h2 class="text-4xl font-bold mt-2 mb-4">
+        <span class="text-white">Why Choose</span>
+        <span class="gradient-text">IPTVPro</span>
+      </h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        Experience the future of television with our cutting-edge IPTV service packed with premium features.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {features.map((feature, index) => (
+        <div 
+          class="bg-dark p-6 rounded-lg transform hover:scale-105 transition-all"
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+        >
+          <div class="text-4xl mb-4">{feature.icon}</div>
+          <h3 class="text-white text-xl font-semibold mb-2">{feature.title}</h3>
+          <p class="text-gray-400">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

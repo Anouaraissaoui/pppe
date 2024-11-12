@@ -1,0 +1,79 @@
+---
+import PricingCard from './PricingCard.svelte';
+
+const plans = [
+  {
+    duration: "1 Month",
+    price: "11",
+    features: [
+      "1 Device Connection",
+      "10000+ TV Channels",
+      "Supports All Devices",
+      "24/7 Instant Support",
+      "Full HD & 4K Content"
+    ]
+  },
+  {
+    duration: "3 Months",
+    price: "30",
+    features: [
+      "1 Device Connection",
+      "10000+ TV Channels",
+      "Supports All Devices",
+      "24/7 Instant Support",
+      "Full HD & 4K Content",
+      "Save 10%"
+    ],
+    popular: true
+  },
+  {
+    duration: "6 Months",
+    price: "55",
+    features: [
+      "1 Device Connection",
+      "10000+ TV Channels",
+      "Supports All Devices",
+      "24/7 Instant Support",
+      "Full HD & 4K Content",
+      "Save 15%"
+    ]
+  },
+  {
+    duration: "1 Year",
+    price: "90",
+    features: [
+      "1 Device Connection",
+      "10000+ TV Channels",
+      "Supports All Devices",
+      "24/7 Instant Support",
+      "Full HD & 4K Content",
+      "Save 25%"
+    ]
+  }
+];
+---
+<section id="pricing" class="bg-dark py-20">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <span class="text-primary text-sm font-bold tracking-wider uppercase">Pricing Plans</span>
+      <h2 class="text-4xl font-bold mt-2 mb-4">
+        <span class="text-white">Choose Your</span>
+        <span class="text-primary">Perfect Plan</span>
+      </h2>
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        Select from our competitive pricing plans and start streaming your favorite content today. All plans include our premium features and 24/7 support.
+      </p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {plans.map(plan => (
+        <PricingCard 
+          client:load
+          duration={plan.duration}
+          price={plan.price}
+          features={plan.features}
+          popular={plan.popular}
+        />
+      ))}
+    </div>
+  </div>
+</section>

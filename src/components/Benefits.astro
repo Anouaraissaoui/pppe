@@ -1,0 +1,41 @@
+---
+const benefits = [
+  {
+    title: "Cost Effective",
+    description: "Save money compared to traditional cable or satellite TV packages."
+  },
+  {
+    title: "High-Quality Streaming",
+    description: "Enjoy crisp, high-definition video and audio quality."
+  },
+  {
+    title: "Flexible Viewing",
+    description: "Watch your favorite content anytime, anywhere with an internet connection."
+  },
+  {
+    title: "Global Reach",
+    description: "Access a wide range of international channels and content."
+  }
+];
+---
+<section class="bg-secondary py-20">
+  <div class="container mx-auto px-4 flex flex-wrap items-center">
+    <div class="w-full lg:w-1/2 mb-10 lg:mb-0">
+      <img src="/images/family-watching.jpg" alt="Family watching TV" class="rounded-lg shadow-xl">
+    </div>
+    <div class="w-full lg:w-1/2 lg:pl-12">
+      <h2 class="text-3xl font-bold mb-8">
+        <span class="text-white">Benefits of</span>
+        <span class="text-primary">IPTV</span>
+      </h2>
+      <div class="space-y-6">
+        {benefits.map(benefit => (
+          <div class="bg-dark p-6 rounded-lg">
+            <h3 class="text-primary text-xl font-semibold mb-2">{benefit.title}</h3>
+            <p class="text-gray-400">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

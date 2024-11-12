@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Stats from '../components/Stats.astro';
+import Pricing from '../components/Pricing.astro';
+import Benefits from '../components/Benefits.astro';
+import FAQ from '../components/FAQ.astro';
+import Testimonials from '../components/Testimonials.astro';
+
+const pageTitle = "Premium IPTV Subscription Service | 50,000+ Channels & VOD";
+const pageDescription = "Get access to 50,000+ live TV channels, movies, and shows with our premium IPTV subscription. Enjoy HD quality streaming, sports channels, and 24/7 support. Start your entertainment journey today!";
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  image="/images/hero-tv.jpg"
+>
+  <main>
+    <Hero />
+    <Features />
+    <Stats />
+    <Benefits />
+    <Pricing />
+    <Testimonials />
+    <FAQ />
+  </main>
+</Layout>
