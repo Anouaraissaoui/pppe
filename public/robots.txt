@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-domain.com/sitemap-index.xml
+Sitemap: https://www.aste.me/sitemap-index.xml
