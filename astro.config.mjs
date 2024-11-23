@@ -20,5 +20,14 @@ export default defineConfig({
     shikiConfig: {
       theme: 'dracula'
     }
+  },
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    },
+    remotePatterns: [{ protocol: "https" }],
+    domains: ['www.aste.me'],
+    format: ['avif', 'webp'],
+    quality: 80
   }
 });
