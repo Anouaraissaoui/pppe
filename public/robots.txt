@@ -1,4 +1,28 @@
+# Global rules
 User-agent: *
 Allow: /
+Allow: /blog/
+Allow: /pricing/
+Allow: /features/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /draft/
+Disallow: /thank-you/
+Disallow: /404/
+Disallow: /*.json$
+Disallow: /*?*
 
-Sitemap: https://www.aste.me/sitemap-index.xml
+# Crawl-delay for all bots
+Crawl-delay: 10
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://aste.me/sitemap-index.xml
