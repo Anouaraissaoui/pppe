@@ -3,9 +3,12 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import svelte from '@astrojs/svelte';
+import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
   site: 'https://aste.me',
+  output: 'server',
+  adapter: vercel(),
   integrations: [
     tailwind(),
     sitemap({
