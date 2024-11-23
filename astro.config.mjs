@@ -8,7 +8,21 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   site: 'https://aste.me',
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+    speedInsights: {
+      enabled: true,
+    },
+    imageService: true,
+    devImageService: 'sharp',
+  }),
+  vite: {
+    ssr: {
+      noExternal: ['astro-icon'],
+    },
+  },
   integrations: [
     tailwind(),
     sitemap({
@@ -16,9 +30,7 @@ export default defineConfig({
       priority: 0.9,
       lastmod: new Date(),
       serialize(item) {
-        // Customize URLs priority based on their path
         if (item.url === 'https://aste.me/') {
-          // Homepage gets highest priority
           return {
             ...item,
             priority: 1.0,
@@ -26,7 +38,6 @@ export default defineConfig({
           };
         }
         if (item.url.includes('/blog/')) {
-          // Blog posts get medium-high priority
           return {
             ...item,
             priority: 0.8,
@@ -34,47 +45,27 @@ export default defineConfig({
           };
         }
         if (item.url.includes('/pricing')) {
-          // Pricing page gets high priority
           return {
             ...item,
             priority: 0.9,
             changefreq: 'daily'
           };
         }
-        // Default values for other pages
         return {
           ...item,
           priority: 0.7,
           changefreq: 'weekly'
         };
       },
-      filter: (page) => {
-        // Exclude certain pages from sitemap
-        const excludePatterns = [
-          '/404',           // Error pages
-          '/thank-you',     // Thank you pages
-          '/admin',         // Admin pages
-          '/api/',         // API endpoints
-          '/draft/'        // Draft posts
-        ];
-        return !excludePatterns.some(pattern => page.includes(pattern));
-      }
+      filter: (page) => !page.includes('/private/')
     }),
     mdx(),
     svelte()
   ],
   markdown: {
     shikiConfig: {
-      theme: 'dracula'
+      theme: 'dracula',
+      wrap: true
     }
-  },
-  image: {
-    service: {
-      entrypoint: 'astro/assets/services/sharp'
-    },
-    remotePatterns: [{ protocol: "https" }],
-    domains: ['www.aste.me'],
-    format: ['avif', 'webp'],
-    quality: 80
   }
 });
