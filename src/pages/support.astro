@@ -1,0 +1,228 @@
+---
+import Layout from '../layouts/Layout.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
+import { Icon } from 'astro-icon';
+
+const supportCategories = [
+  {
+    title: 'Getting Started',
+    icon: 'mdi:rocket-launch',
+    description: 'New to our service? Find quick start guides and basic setup instructions.',
+    articles: [
+      'How to set up your device',
+      'First-time user guide',
+      'Understanding your subscription'
+    ]
+  },
+  {
+    title: 'Technical Support',
+    icon: 'mdi:tools',
+    description: 'Having technical issues? Find solutions to common problems.',
+    articles: [
+      'Troubleshooting connection issues',
+      'Device compatibility guide',
+      'Network optimization tips'
+    ]
+  },
+  {
+    title: 'Account & Billing',
+    icon: 'mdi:credit-card',
+    description: 'Questions about your account or payments? Get help here.',
+    articles: [
+      'Managing your subscription',
+      'Payment methods',
+      'Billing FAQ'
+    ]
+  },
+  {
+    title: 'Live Support',
+    icon: 'mdi:headset',
+    description: 'Need immediate assistance? Connect with our support team.',
+    articles: [
+      'Live chat support',
+      '24/7 customer service',
+      'Contact options'
+    ]
+  }
+];
+
+const pageTitle = "24/7 Customer Support | Get Help & Support";
+const pageDescription = "Get instant help and support for your IPTV service. Access guides, FAQs, and 24/7 customer support to resolve any issues quickly.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-purple-900 to-indigo-900 text-white">
+    <div class="container mx-auto px-4 py-16 md:py-24">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">How Can We Help You?</h1>
+        <p class="text-xl text-gray-300 mb-8">Find answers, get support, and resolve issues quickly</p>
+        
+        <!-- Search Bar -->
+        <div class="relative max-w-2xl mx-auto">
+          <input 
+            type="text" 
+            placeholder="Search for help articles..." 
+            class="w-full px-6 py-4 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          />
+          <button class="absolute right-4 top-1/2 -translate-y-1/2">
+            <Icon name="mdi:magnify" class="w-6 h-6 text-gray-300" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Support Categories -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {supportCategories.map(category => (
+          <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+            <div class="flex items-center mb-4">
+              <Icon name={category.icon} class="w-8 h-8 text-purple-600" />
+              <h3 class="text-xl font-semibold ml-3">{category.title}</h3>
+            </div>
+            <p class="text-gray-600 mb-4">{category.description}</p>
+            <ul class="space-y-2">
+              {category.articles.map(article => (
+                <li>
+                  <a href="#" class="text-purple-600 hover:text-purple-700 flex items-center">
+                    <Icon name="mdi:chevron-right" class="w-4 h-4 mr-1" />
+                    {article}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Options -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Get in Touch</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div class="text-center p-6">
+          <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="mdi:chat" class="w-8 h-8 text-purple-600" />
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Live Chat</h3>
+          <p class="text-gray-600 mb-4">Chat with our support team 24/7</p>
+          <button class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors">
+            Start Chat
+          </button>
+        </div>
+
+        <div class="text-center p-6">
+          <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="mdi:email" class="w-8 h-8 text-purple-600" />
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Email Support</h3>
+          <p class="text-gray-600 mb-4">Get help via email</p>
+          <a href="mailto:support@aste.me" class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors inline-block">
+            Send Email
+          </a>
+        </div>
+
+        <div class="text-center p-6">
+          <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Icon name="mdi:phone" class="w-8 h-8 text-purple-600" />
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Phone Support</h3>
+          <p class="text-gray-600 mb-4">Call us for immediate help</p>
+          <a href="tel:+1234567890" class="bg-purple-600 text-white px-6 py-2 rounded-full hover:bg-purple-700 transition-colors inline-block">
+            Call Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+      <div class="max-w-3xl mx-auto space-y-6">
+        {[1, 2, 3, 4].map((_, index) => (
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <button class="w-full px-6 py-4 text-left font-semibold flex justify-between items-center hover:bg-gray-50">
+              <span>How do I {index === 0 ? 'get started' : index === 1 ? 'update my payment method' : index === 2 ? 'contact support' : 'cancel my subscription'}?</span>
+              <Icon name="mdi:chevron-down" class="w-6 h-6 text-gray-400" />
+            </button>
+            <div class="px-6 py-4 border-t border-gray-100 hidden">
+              <p class="text-gray-600">Detailed answer to the question goes here. This section can include text, links, and even images if needed.</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Support -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-8">Join Our Community</h2>
+      <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+        Connect with other users, share experiences, and get help from our community members.
+      </p>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors">
+          Join Discord
+        </a>
+        <a href="#" class="bg-gray-800 text-white px-6 py-2 rounded-full hover:bg-gray-900 transition-colors">
+          Visit Forum
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+// FAQ Accordion
+document.querySelectorAll('.bg-white.rounded-lg button').forEach(button => {
+  button.addEventListener('click', () => {
+    const content = button.nextElementSibling;
+    const icon = button.querySelector('.text-gray-400');
+    
+    content.classList.toggle('hidden');
+    icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+  });
+});
+
+// Search functionality
+const searchInput = document.querySelector('input[type="text"]');
+searchInput?.addEventListener('keyup', (e) => {
+  // Add your search logic here
+  console.log('Searching for:', e.target.value);
+});
+</script>
+
+<style>
+  .bg-gradient-to-b {
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  button {
+    transition: all 0.3s ease;
+  }
+
+  .text-gray-400 {
+    transition: transform 0.3s ease;
+  }
+</style>
