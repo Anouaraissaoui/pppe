@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import { getImageMetadata, generateBase64Placeholder } from '../utils/blurhash';
 
 interface Props {
   src: string;
@@ -7,19 +8,69 @@ interface Props {
   width?: number;
   height?: number;
   class?: string;
+  priority?: boolean;
 }
 
-const { src, alt, width, height, class: className } = Astro.props;
+const { src, alt, width, height, class: className, priority = false } = Astro.props;
+
+// Generate blur hash and base64 placeholder
+const imageMetadata = await getImageMetadata(src);
+const base64Placeholder = await generateBase64Placeholder(src);
+
+// Default dimensions if not provided
+const imgWidth = width || imageMetadata?.width || 800;
+const imgHeight = height || imageMetadata?.height || 600;
 ---
 
-<Image 
-  src={src}
-  alt={alt}
-  width={width}
-  height={height}
-  class={className}
-  format="webp"
-  quality={80}
-  loading="lazy"
-  decoding="async"
-/>
+<div class:list={["relative overflow-hidden", className]}>
+  {/* Blur placeholder */}
+  <div
+    class="absolute inset-0 scale-110 -z-10"
+    style={`
+      background-image: url(${base64Placeholder});
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px);
+    `}
+  >
+  </div>
+
+  {/* Main image */}
+  <Image 
+    src={src}
+    alt={alt}
+    width={imgWidth}
+    height={imgHeight}
+    class="w-full h-full object-cover transition-opacity duration-300"
+    format="webp"
+    quality={80}
+    loading={priority ? "eager" : "lazy"}
+    decoding={priority ? "sync" : "async"}
+  />
+</div>
+
+<script>
+  // Progressive loading effect
+  const images = document.querySelectorAll('img[loading="lazy"]');
+  images.forEach((img) => {
+    if (img.complete) {
+      img.style.opacity = "1";
+    } else {
+      img.style.opacity = "0";
+      img.addEventListener("load", () => {
+        img.style.opacity = "1";
+      });
+    }
+  });
+</script>
+
+<style>
+  img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  img[loading="eager"] {
+    opacity: 1;
+  }
+</style>

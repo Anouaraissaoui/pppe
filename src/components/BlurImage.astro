@@ -1,0 +1,54 @@
+---
+import { Blurhash } from "react-blurhash";
+import { Image } from "astro:assets";
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  hash: string;
+  class?: string;
+}
+
+const { src, alt, width, height, hash, class: className } = Astro.props;
+---
+
+<div class:list={["relative", className]}>
+  <div
+    class="absolute inset-0 blur-xl scale-110 -z-10"
+    style="background-image: url(data:image/jpeg;base64,{hash});"
+  >
+  </div>
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    class="w-full h-full object-cover"
+    loading="lazy"
+    decoding="async"
+  />
+</div>
+
+<script>
+  // Load images with fade-in effect
+  const images = document.querySelectorAll('img[loading="lazy"]');
+  images.forEach((img) => {
+    img.style.opacity = "0";
+    img.style.transition = "opacity 0.5s ease-in-out";
+    img.addEventListener("load", () => {
+      img.style.opacity = "1";
+    });
+  });
+</script>
+
+<style>
+  img {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  img.loaded {
+    opacity: 1;
+  }
+</style>
