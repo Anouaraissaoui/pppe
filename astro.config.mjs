@@ -3,26 +3,21 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import svelte from '@astrojs/svelte';
-import vercel from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel/static';
 
 export default defineConfig({
   site: 'https://aste.me',
-  output: 'server',
+  output: 'static',
   adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-    speedInsights: {
-      enabled: true,
-    },
+    analytics: true,
     imageService: true,
     devImageService: 'sharp',
+    imagesConfig: {
+      sizes: [640, 750, 828, 1080, 1200],
+      formats: ['webp', 'avif'],
+      minimumCacheTTL: 60
+    }
   }),
-  vite: {
-    ssr: {
-      noExternal: ['astro-icon'],
-    },
-  },
   integrations: [
     tailwind(),
     sitemap({
