@@ -1,38 +1,22 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "astro/tsconfigs/base",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@assets/*": ["src/assets/*"],
-      "@utils/*": ["src/utils/*"]
+      "@/*": ["src/*"]
     },
     "jsx": "preserve",
     "jsxImportSource": "react",
-    "verbatimModuleSyntax": true,
-    "moduleResolution": "node",
     "module": "ESNext",
+    "moduleResolution": "bundler",
+    "verbatimModuleSyntax": true,
     "target": "ESNext",
     "strict": true,
-    "strictNullChecks": true,
     "allowJs": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "types": ["astro/client"]
+    "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.astro"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    ".vercel",
-    "public"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", ".vercel"]
 }
